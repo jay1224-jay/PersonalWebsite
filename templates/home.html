@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jay's Personal Website</title>
+        <style type="text/css">
+body {
+    background-color: #6B6B6B;
+    font-family: Arial;
+    color: white;
+    font-size: 14px
+}
+a {
+
+        </style>
+    </head>
+<body>
+
+    <a href='/upload'><button>Upload</button></a>
+
+    <h1>Files</h1>
+
+    <ol>
+        {% for file in files %}
+        <a href='/{{uploadDir}}/{{file}}'><li> {{ file }} </li></a>
+
+        {% endfor %}
+    </ol>
+    
+
+</body>
+</html>
