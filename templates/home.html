@@ -10,6 +10,12 @@ body {
     font-size: 14px
 }
 a {
+    text-decoration: none;
+    color: white;
+}
+table, th, td {
+    border: 1px solid black;
+}
 
         </style>
     </head>
@@ -19,12 +25,25 @@ a {
 
     <h1>Files</h1>
 
-    <ol>
+    <table>
+        <tr>
+            <th>Filename</th>
+            <th>Size</th>
+            <th>View</th>
+            <th>Delete</th>
+        </tr>
+        
         {% for file in files %}
-        <a href='/{{uploadDir}}/{{file}}'><li> {{ file }} </li></a>
+        <tr>
+            <td>{{ file[0] }}</td>
+            <td>{{ file[1] }} MB</td>
+            <td><a href='{{uploadDir}}/{{file[0]}}'>view</a></td>
+            <td></td>
 
+        </tr>
         {% endfor %}
-    </ol>
+    </table>
+
     
 
 </body>

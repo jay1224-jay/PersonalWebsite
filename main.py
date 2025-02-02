@@ -6,13 +6,13 @@ UPLOAD_FOLDER = './static/'
 
 app = Flask(__name__)
 
-app = Flask(__name__)
+
 
 @app.route('/')
 def home():
 
     # file list
-    files = [ file for file in os.listdir(UPLOAD_FOLDER) ]
+    files = [ [file, round(os.path.getsize(UPLOAD_FOLDER + file)/1024/1024, 2)] for file in os.listdir(UPLOAD_FOLDER) if os.path.isfile(UPLOAD_FOLDER + file) and len(file.split('.')) == 2 and file.split('.')[0] ]
     print(files)
     
     return render_template('home.html', files = files, uploadDir = UPLOAD_FOLDER)
