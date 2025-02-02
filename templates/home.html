@@ -48,7 +48,7 @@ button {
         
         {% for file in files %}
         <tr>
-            <td><a href='{{uploadDir}}/{{file[0]}}'>{{ file[0] }}</a></td>
+            <td><a href='static/{{file[0]}}'>{{ file[0] }}</a></td>
             <td>{{ file[1] }} MB</td>
             <td>rename</td>
             <td><a href="delete/{{file[0]}}">delete</a></td>
