@@ -2,11 +2,25 @@ import os
 from flask import Flask, flash, request, redirect, url_for, render_template
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = './static/'
+# status = "remote"
+status = "local"
+
+if status == "remote":
+    UPLOAD_FOLDER = '/home/wuj/mysite/static/'
+elif status == "local":
+    UPLOAD_FOLDER = './static/'
+else:
+    print("Unknown status: " + status)
 
 app = Flask(__name__)
 
+rp_dict = {" ": "_"}
 
+def process_filename(filename):
+    for c in rp_dict.keys():
+        filename = filename.replace(c, rp_dict[c])
+
+    return filename
 
 @app.route('/')
 def home():
@@ -31,11 +45,19 @@ def upload_file():
             flash('No selected file')
             return redirect(request.url)
         if file:
-            filename = secure_filename(file.filename)
+            filename = process_filename(file.filename)
             file.save(os.path.join(UPLOAD_FOLDER, filename))
             return redirect('/')
 
     return render_template('upload.html')
+
+@app.route('/delete/<filename>')
+def delete_file(filename):
+
+    name = UPLOAD_FOLDER + filename
+    os.remove(name)
+
+    return redirect('/')
 
 if __name__ == '__main__':
     app.run(debug=True)

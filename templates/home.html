@@ -4,10 +4,10 @@
         <title>Jay's Personal Website</title>
         <style type="text/css">
 body {
-    background-color: #6B6B6B;
+    background-color: #2b3e4d;
     font-family: Arial;
     color: white;
-    font-size: 14px
+    font-size: large
 }
 a {
     text-decoration: none;
@@ -15,6 +15,18 @@ a {
 }
 table, th, td {
     border: 1px solid black;
+    padding: 4px;
+    text-align: center;
+}
+
+table {
+    padding: 0;
+}
+button {
+    font-size: 20px;
+    background: none;
+    border: 1px solid yellow;
+    color: yellow;
 }
 
         </style>
@@ -23,22 +35,23 @@ table, th, td {
 
     <a href='/upload'><button>Upload</button></a>
 
-    <h1>Files</h1>
+    <h1 style="font-family: Times New Roman;">Jay's Personal Website</h1>
+    <h2>Files</h2>
 
     <table>
         <tr>
             <th>Filename</th>
             <th>Size</th>
-            <th>View</th>
+            <th>Rename</th>
             <th>Delete</th>
         </tr>
         
         {% for file in files %}
         <tr>
-            <td>{{ file[0] }}</td>
+            <td><a href='{{uploadDir}}/{{file[0]}}'>{{ file[0] }}</a></td>
             <td>{{ file[1] }} MB</td>
-            <td><a href='{{uploadDir}}/{{file[0]}}'>view</a></td>
-            <td></td>
+            <td>rename</td>
+            <td><a href="delete/{{file[0]}}">delete</a></td>
 
         </tr>
         {% endfor %}
